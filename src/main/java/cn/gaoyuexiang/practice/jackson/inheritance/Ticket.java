@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
 
 @JsonTypeInfo(
-  use = JsonTypeInfo.Id.CLASS
+  use = JsonTypeInfo.Id.MINIMAL_CLASS
 )
 @Data
 public abstract class Ticket {

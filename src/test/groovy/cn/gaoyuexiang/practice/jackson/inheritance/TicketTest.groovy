@@ -8,9 +8,9 @@ import com.fasterxml.jackson.databind.exc.InvalidDefinitionException
 
 class TicketTest extends Specification {
   @Shared
-  def questionTicketJson = '{"@class":"cn.gaoyuexiang.practice.jackson.inheritance.QuestionTicket","type":"QUESTION","description":"some description"}'
+  def questionTicketJson = '{"@c":".QuestionTicket","type":"QUESTION","description":"some description"}'
   @Shared
-  def bugReportingTicketJson = '{"@class":"cn.gaoyuexiang.practice.jackson.inheritance.BugReportingTicket","type":"BUG_REPORTING","productName":"RDS","stepToReproduce":"1.2.3."}'
+  def bugReportingTicketJson = '{"@c":".BugReportingTicket","type":"BUG_REPORTING","productName":"RDS","stepToReproduce":"1.2.3."}'
   @Shared
   def objectMapper = new ObjectMapper()
 
