@@ -8,9 +8,9 @@ import com.fasterxml.jackson.databind.exc.InvalidDefinitionException
 
 class TicketTest extends Specification {
   @Shared
-  def questionTicketJson = '{"type":"QUESTION","description":"some description"}'
+  def questionTicketJson = '{"@class":"cn.gaoyuexiang.practice.jackson.inheritance.QuestionTicket","type":"QUESTION","description":"some description"}'
   @Shared
-  def bugReportingTicketJson = '{"type":"BUG_REPORTING","productName":"RDS","stepToReproduce":"1.2.3."}'
+  def bugReportingTicketJson = '{"@class":"cn.gaoyuexiang.practice.jackson.inheritance.BugReportingTicket","type":"BUG_REPORTING","productName":"RDS","stepToReproduce":"1.2.3."}'
   @Shared
   def objectMapper = new ObjectMapper()
 
@@ -42,17 +42,17 @@ class TicketTest extends Specification {
   }
 
   @Unroll
-  def "should throw exception when try to desrialize question json to abstract class"(json) {
+  def "should desrialize json to abstract class"(json, type) {
     when:
-    objectMapper.readValue(json, Ticket.class)
+    def ticket = objectMapper.readValue(json, Ticket.class)
 
     then:
-    def exception = thrown(InvalidDefinitionException)
-    exception.message.contains 'Cannot construct instance of `cn.gaoyuexiang.practice.jackson.inheritance.Ticket` (no Creators, like default constructor, exist): abstract types either need to be mapped to concrete types, have custom deserializer, or contain additional type information'
+    notThrown(InvalidDefinitionException)
+    type.isCase(ticket)
 
     where:
-    json                   | _
-    questionTicketJson     | _
-    bugReportingTicketJson | _
+    json                   | type
+    questionTicketJson     | QuestionTicket
+    bugReportingTicketJson | BugReportingTicket
   }
 }
