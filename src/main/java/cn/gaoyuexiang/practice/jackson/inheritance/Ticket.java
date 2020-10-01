@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
 
 @JsonTypeInfo(
-  use = JsonTypeInfo.Id.NAME
+  use = JsonTypeInfo.Id.NAME,
+  include = JsonTypeInfo.As.WRAPPER_OBJECT
 )
 @JsonSubTypes({
   @JsonSubTypes.Type(value = QuestionTicket.class, name = "QUESTION"),
