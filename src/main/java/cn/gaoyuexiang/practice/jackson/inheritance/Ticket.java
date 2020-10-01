@@ -7,7 +7,7 @@ import lombok.Data;
 
 @JsonTypeInfo(
   use = JsonTypeInfo.Id.NAME,
-  include = JsonTypeInfo.As.WRAPPER_OBJECT
+  include = JsonTypeInfo.As.WRAPPER_ARRAY
 )
 @JsonSubTypes({
   @JsonSubTypes.Type(value = QuestionTicket.class, name = "QUESTION"),
