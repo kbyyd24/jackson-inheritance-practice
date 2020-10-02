@@ -1,0 +1,5 @@
+= Jackson Inheritance Practice
+
+Practice about `@JsonTypeInfo` annotation.
+
+Could find different usages in tags.
